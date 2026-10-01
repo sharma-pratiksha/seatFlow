@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react'
 import EventGrid from './EventGrid';
 
-const EventSection = () => {
+const EventSection = ({search}) => {
     console.log("EventSection rendered");
     const categories = ["All", "Music", "Sports", "Movies", "Comedy"];
     
@@ -17,9 +17,26 @@ const EventSection = () => {
         })
     },[])
     
-    const filterEvents = 
-    selectedCategories === "All" ? allEvents : allEvents.filter((event) => event.category === selectedCategories
-)
+//     const filterEvents = 
+//     selectedCategories === "All" ? allEvents : allEvents.filter((event) => event.category === selectedCategories
+
+// )
+const searchText = search.trim().toLowerCase()
+
+const filterEvents = allEvents.filter((event) => {
+
+  const matchesCategory =
+    selectedCategories === "All" ||
+    event.category === selectedCategories
+
+  const matchesSearch =
+    searchText === "" ||
+    event.title.toLowerCase().includes(searchText) ||
+    event.venue.toLowerCase().includes(searchText) ||
+    event.city.toLowerCase().includes(searchText)
+
+  return matchesCategory && matchesSearch
+})
 return (
     <div className='mt-4 ml-10 mr-10  flex-row gap-10'>
         <div className=' flex gap-4 mb-8 '>

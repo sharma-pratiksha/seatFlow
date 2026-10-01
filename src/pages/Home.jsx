@@ -1,7 +1,9 @@
+import { useState } from 'react'
 import EventSection from '../components/EventSection'
 import SearchBar from '../components/SearchBar'
 
 const Home = () => {
+  const [search, setSearch] = useState("")
   return (
     <div className='pt-29 flex-row font-semibold tracking-wide '>
       <h1 className='text-5xl ml-10 mb-4'>Book Tickets For
@@ -11,8 +13,11 @@ const Home = () => {
             Discover. Book. Enjoy
         </p>
 
-        <SearchBar />
-        <EventSection />
+        <SearchBar
+        search={search}
+        setSearch={setSearch} />
+        <EventSection
+        search={search} />
         
     </div>
 
