@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import EventSection from '../components/EventSection'
 import SearchBar from '../components/SearchBar'
+import Footer from '../components/Footer'
 
 const Home = () => {
   const [search, setSearch] = useState("")
@@ -19,6 +20,7 @@ const Home = () => {
         <EventSection
         search={search} />
         
+        <Footer/>
     </div>
 
   )
