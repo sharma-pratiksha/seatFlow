@@ -3,6 +3,11 @@ const mongoose = require("mongoose");
 const Listing = require('./models/listings');
 const dotenv = require("dotenv");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
+const passport = require("passport");
+const localStrategy = require("passport-local");
+const session = require("express-session")
+// const User = require('./models/user.js');
 
 dotenv.config();
 
@@ -10,6 +15,17 @@ dotenv.config();
 const app = express();
 
 app.use(cors());
+app.use(cookieParser());
+
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        httpOnly: true,
+        maxAge: 1000 * 60 * 60 * 24
+    }
+}));
 
 let port = 5000;
 

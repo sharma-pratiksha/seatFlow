@@ -18,7 +18,12 @@ const Navbar = () => {
             <Link to="/bookings" className={navBtn} style={{textDecoration: "none"}}>My Bookings</Link>
             </div>
             <div className=' bg-blue-600 text-white border-2  absolute right-3 px-3 py-2 cursor-pointer rounded-xl hover:bg-blue-700'>
-                <button className='cbg-blue-600 text-white px-2 py-1 rounded-lg hover:bg-blue-700 transition duration-200'>Login</button>
+                <button className='cbg-blue-600 text-white px-2 py-1 rounded-lg hover:bg-blue-700 transition duration-200'>
+                    <Link to='/login'
+                    className='font-semibold no-underline! text-white'>
+                    Login
+                    </Link>
+                    </button>
             </div>
             </div>
         </nav>
