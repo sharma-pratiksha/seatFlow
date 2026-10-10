@@ -1,28 +1,30 @@
-import './App.css'
-import Navbar from './components/Navbar'
-import Home from './pages/Home'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Events from './pages/Events';
-import Bookings from './pages/Bookings';
+import MainLayout from "./layouts/MainLayout";
+import Home from "./pages/Home";
+import Events from "./pages/Events";
+import Bookings from "./pages/Bookings";
+import Login from "./pages/Login";
 
 function App() {
-
   return (
-    <div className='bg-white min-h-screen'>
-      
-  <BrowserRouter>
+    <div className="bg-white min-h-screen">
+      <BrowserRouter>
+        <Routes>
 
-      <Navbar />
+          {/* Pages with Navbar and Footer */}
+          <Route element={<MainLayout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/events" element={<Events />} />
+            <Route path="/bookings" element={<Bookings />} />
+          </Route>
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/events" element={<Events />} />
-        <Route path="/bookings" element={<Bookings />} />
-      </Routes>
+          {/* Authentication page without Navbar */}
+          <Route path="/login" element={<Login />} />
 
-    </BrowserRouter>
+        </Routes>
+      </BrowserRouter>
     </div>
-  )
+  );
 }
 
 export default App;

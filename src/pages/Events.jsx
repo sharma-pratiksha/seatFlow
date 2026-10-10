@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import EventFilter from '../components/EventFilter';
 import SearchBar from '../components/SearchBar';
-import EventCard from '../components/EventCard';
 import EventGrid from '../components/EventGrid';
 
 const Events = () => {
@@ -51,7 +50,7 @@ const Events = () => {
 
   return (
 
-    <div className='pt-29 font-semibold tracking-wide'>
+    <div className=' font-semibold tracking-wide'>
 
       {/* Heading */}
 
