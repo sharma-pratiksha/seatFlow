@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Events from "./pages/Events";
 import Bookings from "./pages/Bookings";
 import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
 
           {/* Authentication page without Navbar */}
           <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
 
         </Routes>
       </BrowserRouter>
