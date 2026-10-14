@@ -5,9 +5,6 @@ import {useFormik} from 'formik'
 
  const validate = values => {
    const errors = {};
-   if (!values.username) {
-     errors.username = 'Required';
-   } 
  
    if (!values.password) {
      errors.password = 'Required';
@@ -29,15 +26,46 @@ const Login = () => {
 
     const formik = useFormik({
         initialValues: {
-            username: "",
             email: "",
             password: ""
         },
         validate,
-        onSubmit: (values) => {
-            alert(JSON.stringify(values, null, 2));
-            resetForm();
+
+onSubmit: async (values, { resetForm }) => {
+  try {
+    const response = await fetch(
+      "http://localhost:5000/signup/login",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
         },
+        credentials: "include",
+        body: JSON.stringify({
+          email: values.email,
+          password: values.password
+        })
+      }
+    );
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      alert(data.message || "Invalid email or password");
+      return;
+    }
+
+    alert(data.message);
+    console.log("Logged-in user:", data.user);
+
+    resetForm();
+  } catch (error) {
+    console.error("Login error:", error);
+    alert("Unable to connect to server");
+  }
+}
+
+
     })
     const [showPassword, setShowPassword] = useState(false);
 
@@ -49,22 +77,6 @@ const Login = () => {
         <form 
         onSubmit={formik.handleSubmit}
         className='w-full space-y-4 mt-6 '>
-            {/* userName */}
-            <div className='relative'>
-                  <FaUser className="absolute left-4 top-1/2 -translate-y-1/2  text-gray-400" />
-            <input placeholder='Enter username'
-            type='text'
-            value={formik.values.username}
-            name='username'
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            className={`w-full border border-gray-300 rounded-lg pl-11 pr-4 outline-none focus:border-blue-500! py-2 ${formik.touched.username && formik.errors.username ? "border-red-500!" : "border-gray-300!"}` }
-            
-            />
-            </div>
-            {formik.touched.username && formik.errors.username && (
-                <p className="text-red-500 text-sm mt-1">{formik.errors.username}</p>
-            )}
 
             {/* email */}
             <div className='relative'>

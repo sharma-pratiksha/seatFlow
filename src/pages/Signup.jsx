@@ -21,7 +21,7 @@ import {useFormik} from 'formik'
   errors.confirmPassword = "Passwords do not match";
 }
  
-   if (!values.email.trim()) {
+   if (!values.email) {
      errors.email = 'Required';
    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
      errors.email = 'Invalid email address';
@@ -42,10 +42,32 @@ const Signup = () => {
             confirmPassword: "",
         },
         validate,
-        onSubmit: (values, {resetForm}) => {
-            alert(JSON.stringify(values, null, 2));
-            resetForm();
-        },
+      
+onSubmit: async (values, { resetForm }) => {
+  try {
+    const response = await fetch("http://localhost:5000/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(values)
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.message || "Signup failed");
+    }
+
+    alert(data.message);
+    resetForm();
+
+  } catch (error) {
+    console.error("Signup error:", error);
+    alert(error.message || "Unable to connect to server");
+  }
+},
+
     })
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -128,7 +150,7 @@ const Signup = () => {
             onClick={() => setShowConfirmPassword(!showConfirmPassword)}
             className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 cursor-pointer"
             >
-                {showConfirmPassword ? <FaEyeSlash/> : <FaEye/>}
+                {showPassword ? <FaEyeSlash/> : <FaEye/>}
             </button>
             </div>
                 {formik.touched.confirmPassword && formik.errors.confirmPassword && (<p className="text-red-500 text-sm mt-1">{formik.errors.confirmPassword}</p>)}

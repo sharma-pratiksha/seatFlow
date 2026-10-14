@@ -4,9 +4,11 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const passport = require("passport");
-const localStrategy = require("passport-local");
+const LocalStrategy = require("passport-local");
 const session = require("express-session")
 const listingsRoutes = require("./routes/listingRoutes")
+const userRoutes = require("./routes/userRoutes.js");
+const User = require("./models/user.js");
 // const User = require('./models/user.js');
 
 dotenv.config();
@@ -32,6 +34,11 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+
+// Serialize and deserialize user
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 let port = 5000;
 
@@ -49,7 +56,8 @@ app.get("/", (req, res) => {
 })
 
 // listingsRoutes
-app.use("/listings", listingsRoutes)
+app.use("/listings", listingsRoutes);
+app.use("/signup", userRoutes);
 
 
 app.listen(port, () => {
