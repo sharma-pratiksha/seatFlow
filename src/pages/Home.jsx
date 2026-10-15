@@ -20,7 +20,6 @@ const Home = () => {
         <EventSection
         search={search} />
         
-        <Footer/>
     </div>
 
   )

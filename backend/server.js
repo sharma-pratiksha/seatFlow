@@ -16,7 +16,10 @@ dotenv.config();
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+    origin: "http://localhost:5173",
+    credentials: true
+}));
 app.use(express.json());
 app.use(cookieParser());
 
@@ -34,7 +37,12 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
-passport.use(new LocalStrategy(User.authenticate()));
+passport.use(
+  new LocalStrategy(
+    { usernameField: "email" },
+    User.authenticate()
+  )
+)
 
 // Serialize and deserialize user
 passport.serializeUser(User.serializeUser());

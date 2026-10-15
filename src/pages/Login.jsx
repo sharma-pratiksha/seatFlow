@@ -1,5 +1,5 @@
 import {useState} from 'react'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import { FaUser, FaEnvelope, FaLock, FaEyeSlash, FaEye } from "react-icons/fa";
 import {useFormik} from 'formik'
 
@@ -59,6 +59,7 @@ onSubmit: async (values, { resetForm }) => {
     console.log("Logged-in user:", data.user);
 
     resetForm();
+    navigate("/");
   } catch (error) {
     console.error("Login error:", error);
     alert("Unable to connect to server");
@@ -68,6 +69,7 @@ onSubmit: async (values, { resetForm }) => {
 
     })
     const [showPassword, setShowPassword] = useState(false);
+     const navigate = useNavigate();
 
   return (
     <div className='flex justify-center items-center min-h-screen px-4 py-8'>

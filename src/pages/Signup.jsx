@@ -150,7 +150,7 @@ onSubmit: async (values, { resetForm }) => {
             onClick={() => setShowConfirmPassword(!showConfirmPassword)}
             className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 cursor-pointer"
             >
-                {showPassword ? <FaEyeSlash/> : <FaEye/>}
+                {showConfirmPassword ? <FaEyeSlash/> : <FaEye/>}
             </button>
             </div>
                 {formik.touched.confirmPassword && formik.errors.confirmPassword && (<p className="text-red-500 text-sm mt-1">{formik.errors.confirmPassword}</p>)}
