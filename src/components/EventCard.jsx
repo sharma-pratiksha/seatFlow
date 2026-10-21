@@ -1,3 +1,6 @@
+import { Link } from "react-router-dom"
+import { useEffectEvent } from "react"
+
 const EventCard = ({ event }) => {
 
   return (
@@ -27,6 +30,8 @@ const EventCard = ({ event }) => {
           Starting from ₹{event.price}
         </p>
 
+        <p>Event ID: {event._id}</p>
+        <Link to={`/listings/${event._id}`}>
         <button
           className='bg-blue-600 text-white px-4 py-2
                      rounded-lg! mt-4 hover:bg-blue-700
@@ -34,6 +39,7 @@ const EventCard = ({ event }) => {
         >
           Book Now ↗︎
         </button>
+        </Link>
 
       </div>
 
