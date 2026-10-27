@@ -7,7 +7,6 @@ const Listing = require('../models/listings.js');
 router.get("/", async (req, res) => {
     try{
         const listings = await Listing.find({});
-        console.log("listing is working");
         res.json(listings);
 
     }catch (err){

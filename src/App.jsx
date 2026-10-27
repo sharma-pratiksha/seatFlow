@@ -6,6 +6,7 @@ import Bookings from "./pages/Bookings";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import EventDetails from "./components/EventDetail";
+import BookingPage from "./pages/BookingPage";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           {/* Authentication page without Navbar */}
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/listings/:id/book" element={<BookingPage/>}/>
         
 
         </Routes>

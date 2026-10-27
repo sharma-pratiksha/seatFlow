@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 const EventDetails = () => {
   const { id } = useParams();
@@ -75,12 +75,13 @@ const EventDetails = () => {
         ₹{event.price} <span className="text-base font-normal">/ ticket</span>
       </p>
 
+      <Link to={`/listings/${id}/book`}>
       <button
-        className="bg-blue-600 text-white px-6 py-3 rounded-lg mt-6 hover:bg-blue-700"
-        onClick={() => alert("Next step: ticket booking")}
+        className="bg-blue-600 text-white px-6 py-3 rounded-lg! mt-6 hover:bg-blue-700"
       >
         Book Tickets
       </button>
+      </Link>
     </div>
   );
 };
