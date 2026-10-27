@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom'
+import { FiUser, FiMail, FiPhone } from 'react-icons/fi';
 
 
 const BookingPage = () => {
@@ -49,7 +50,7 @@ const BookingPage = () => {
 
   return (
     <div className=''>
-      <div className=' bg-white m-5 rounded-3xl shadow-md p-6 flex '>
+      <div className=' bg-white mx-5 my-2 rounded-3xl shadow-md p-6 flex '>
       <div className="w-[310px] h-[210px] rounded-xl overflow-hidden">
         <img
            src={event.image}
@@ -69,9 +70,59 @@ const BookingPage = () => {
         
       </div>
 
-      <div 
-      className='bg-red-600 p-6 '>
-        <form>
+      
+
+      <div className=' bg-white rounded-xl shadow-2xl p-6 mx-5 '>
+        <form className='flex flex-col'>
+
+          <div 
+      className='mb-1'>
+      <h5 className='font-bold text-2xl'>Attendee information</h5>
+      <p>Please provide the information of the person attend the event.</p>
+      </div>
+
+          <label htmlFor='Fullname' className='block mb-2 ml-1  font-semibold'>Full Name</label>
+          <div className="relative w-full">
+            <FiUser
+            className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-xl pointer-events-none"
+            />
+            
+            <input
+            type="text"
+            placeholder="Enter your full name"
+            id="Fullname"
+            className="w-full border border-gray-300 rounded-2xl py-3 pl-10 pr-3 mb-3 outline-none focus:border-blue-500"
+            />
+            </div>
+
+
+          <label htmlFor='email' className='block mb-2 ml-1  font-semibold'>Email Address</label>
+          <div className="relative w-full">
+            <FiMail
+            className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-xl pointer-events-none"
+            />
+            
+            <input
+            type="text"
+            placeholder="Enter your full name"
+            id="email"
+            className="w-full border border-gray-300 rounded-2xl py-3 pl-10 pr-3 mb-3 outline-none focus:border-blue-500"
+            />
+            </div>
+
+          <label htmlFor='Fullname' className='block mb-2 ml-1  font-semibold'>Full Name</label>
+          <div className="relative w-full">
+            <FiPhone
+            className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-xl pointer-events-none"
+            />
+            
+            <input
+            type="text"
+            placeholder="Enter your full name"
+            id="Fullname"
+            className="w-full border border-gray-300 rounded-2xl py-3 pl-10 pr-3 mb-3 outline-none focus:border-blue-500"
+            />
+            </div>
 
         </form>
       </div>
